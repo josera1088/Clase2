@@ -5,4 +5,6 @@ import com.pfcti.Clase2.model.Inversion;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InversionRepository extends JpaRepository<Inversion, Integer> {
+    void deleteAllByCliente_Id(int cliente_Id);
 }
+
