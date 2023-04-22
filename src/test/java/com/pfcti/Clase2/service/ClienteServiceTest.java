@@ -107,4 +107,45 @@ class ClienteServiceTest {
         });
         assertEquals(1, 1);
     }
+
+    @Test
+    void busquedaDinamicamentePorCriterios() {
+
+        List<ClienteDto> clienteDtos = clienteService.busquedaDinamicamentePorCriterios(new ClienteDto());
+        assertFalse(clienteDtos.isEmpty());
+        System.out.println("<<<<<<<<<<<<<<<<<Clientes>>>>>>>>>>>>>>>>>>>>");
+        clienteDtos.forEach(cliente -> System.out.println("Cliente: " + cliente.getNombre()));
+        assertTrue(clienteDtos.size() > 1);
+
+        ClienteDto clienteDto = new ClienteDto();
+        clienteDto.setApellidos("SANCHEZ");
+        clienteDtos = clienteService.busquedaDinamicamentePorCriterios(clienteDto);
+        System.out.println("<<<<<<<<<<<<<<<<<Clientes SANCHEZ>>>>>>>>>>>>>>>>>>>>");
+        clienteDtos.forEach(cliente -> System.out.println("Cliente: " + cliente.getNombre()));
+        assertTrue(clienteDtos.size() > 1);
+
+        clienteDto = new ClienteDto();
+        clienteDto.setApellidos("SANCHEZ");
+        clienteDto.setNombre("HORACIO");
+        clienteDtos = clienteService.busquedaDinamicamentePorCriterios(clienteDto);
+        System.out.println("<<<<<<<<<<<<<<<<<Clientes SANCHEZ>>>>>>>>>>>>>>>>>>>>");
+        clienteDtos.forEach(cliente -> System.out.println("Cliente: " + cliente.getNombre()));
+        assertTrue(clienteDtos.size() == 1);
+
+        clienteDto = new ClienteDto();
+        clienteDto.setApellidos("SANCHEZ");
+        clienteDto.setCedula("111");
+        clienteDtos = clienteService.busquedaDinamicamentePorCriterios(clienteDto);
+        System.out.println("<<<<<<<<<<<<<<<<<Clientes SANCHEZ>>>>>>>>>>>>>>>>>>>>");
+        clienteDtos.forEach(cliente -> System.out.println("Cliente: " + cliente.getNombre()));
+        assertTrue(clienteDtos.size() == 1);
+
+        clienteDto = new ClienteDto();
+        clienteDto.setApellidos("SANCHEZ");
+        clienteDto.setCedula("1111");
+        clienteDtos = clienteService.busquedaDinamicamentePorCriterios(clienteDto);
+        System.out.println("<<<<<<<<<<<<<<<<<Clientes SANCHEZ>>>>>>>>>>>>>>>>>>>>");
+        clienteDtos.forEach(cliente -> System.out.println("Cliente: " + cliente.getNombre()));
+        assertTrue(clienteDtos.size() == 1);
+    }
 }

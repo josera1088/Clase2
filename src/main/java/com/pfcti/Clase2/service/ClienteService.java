@@ -2,6 +2,7 @@ package com.pfcti.Clase2.service;
 
 import ch.qos.logback.classic.spi.IThrowableProxy;
 import com.fasterxml.jackson.databind.util.BeanUtil;
+import com.pfcti.Clase2.criteria.ClienteSpecification;
 import com.pfcti.Clase2.dto.ClienteDto;
 import com.pfcti.Clase2.model.Cliente;
 import com.pfcti.Clase2.repository.*;
@@ -27,6 +28,7 @@ public class ClienteService {
     private CuentaRepository cuentaRepository;
     private InversionRepository inversionRepository;
     private DireccionRepository direccionRepository;
+    private ClienteSpecification clienteSpecification;
     public void insertatCliente(ClienteDto clienteDto) {
         Cliente cliente = new Cliente();
         cliente.setNombre(clienteDto.getNombre());
@@ -136,6 +138,13 @@ public class ClienteService {
     public  List<ClienteDto> buscarClientePaisTarjetaEstado(String pais){
         return clienteRepository
                 .findClienteByPaisIsNotContainingIgnoreCaseAndAndTarjetas_estadoIsFalse(pais)
+                .stream()
+                .map(this::fromClienteToClienteDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<ClienteDto> busquedaDinamicamentePorCriterios(ClienteDto clienteDtoFilter){
+        return clienteRepository.findAll(clienteSpecification.builFilter(clienteDtoFilter))
                 .stream()
                 .map(this::fromClienteToClienteDto)
                 .collect(Collectors.toList());
