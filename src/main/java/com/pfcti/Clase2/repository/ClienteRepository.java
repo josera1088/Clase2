@@ -3,6 +3,7 @@ package com.pfcti.Clase2.repository;
 import com.pfcti.Clase2.model.Cliente;
 import com.pfcti.Clase2.model.Cuenta;
 import jakarta.persistence.Tuple;
+import jakarta.transaction.UserTransaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -28,6 +29,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> , Jpa
 
     List<Cliente> findClienteByPaisIsNotContainingIgnoreCaseAndAndTarjetas_estadoIsFalse (String pais);
 
-
-
+    List<Cliente> findClientesByCedula(String cedula);
+    List<Cliente> findClientesByNombreContainingIgnoreCaseOrApellidosContainingIgnoreCase(String nombre, String apellidos);
 }

@@ -19,7 +19,7 @@ class CuentaServiceTest {
     @Test
     void busquedaDinamicamentePorCriterios() {
     CuentaDto cuentaDto = new CuentaDto();
-    cuentaDto.setEstado(false);
+    cuentaDto.setEstado(true);
         List<CuentaDto> cuentaDtos = cuentaService.busquedaDinamicamentePorCriterios(cuentaDto);
         assertFalse(cuentaDtos.isEmpty());
         System.out.println("<<<<<<<<<<<<<<<<<Clientes>>>>>>>>>>>>>>>>>>>>");
