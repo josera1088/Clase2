@@ -35,6 +35,7 @@ public class ClienteService {
         cliente.setApellidos(clienteDto.getApellidos());
         cliente.setCedula(clienteDto.getCedula());
         cliente.setTelefono(clienteDto.getTelefono());
+        cliente.setPais(clienteDto.getPais());
         clienteRepository.save(cliente);
     }
 
@@ -65,6 +66,7 @@ public class ClienteService {
         cliente.setApellidos(clienteDto.getApellidos());
         cliente.setCedula(clienteDto.getCedula());
         cliente.setTelefono(clienteDto.getTelefono());
+        cliente.setPais(clienteDto.getPais());
 
         clienteRepository.save(cliente);
     }
