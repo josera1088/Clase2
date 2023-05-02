@@ -17,6 +17,11 @@ public class ClienteAPI {
     @Autowired
     private ClienteService clienteService;
 
+    @GetMapping(value = "/all")
+    public List<ClienteDto> buscarTodosClientes() {
+        return clienteService.obtnerClientes();
+    }
+
     @GetMapping("/{id}")
     public ClienteDto buscarCliente(@PathVariable int id) {
         log.info("Busqueda de cliente : {}", id);
